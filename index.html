@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uchiha Itachi: Sharingan Hand Seals</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div id="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">Awakening Sharingan...</div>
+        <div class="loading-tip">Allow camera access for hand-sign tracking, or use the interactive UI panel to activate the jutsu manually.</div>
+    </div>
+
+    <div id="grain"></div>
+    <div id="eye-overlay"></div>
+
+    <div id="ui">
+        <h1>うちは イタチ</h1>
+        <div class="subtitle">Itachi Uchiha • Visual Jutsu Engine</div>
+        <div id="technique-name">Chakra Neutral</div>
+        <div id="jutsu-desc">A peaceful rest state. Swirling red and black ash circles Itachi's stance quietly.</div>
+    </div>
+
+    <div id="video-container">
+        <video class="input_video" playsinline></video>
+        <canvas id="output_canvas"></canvas>
+    </div>
+
+    <div id="control-panel">
+        <h3>UCHIHA JUTSU DECK</h3>
+        <button class="gesture-btn active" id="btn-neutral" onclick="triggerManualState('neutral')">
+            <span>Chakra Neutral</span>
+            <span class="gesture-shortcut">No Hands</span>
+        </button>
+        <button class="gesture-btn" id="btn-tiger" onclick="triggerManualState('tiger')">
+            <span>1. Tiger Seal (Fire Ball)</span>
+            <span class="gesture-shortcut">Two Hands Up</span>
+        </button>
+        <button class="gesture-btn" id="btn-onehanded" onclick="triggerManualState('onehanded')">
+            <span>2. One-Handed Sign</span>
+            <span class="gesture-shortcut">Index+Middle Up</span>
+        </button>
+        <button class="gesture-btn" id="btn-genjutsu" onclick="triggerManualState('genjutsu')">
+            <span>3. Genjutsu Anime Seal</span>
+            <span class="gesture-shortcut">Index Up Only</span>
+        </button>
+        <button class="gesture-btn" id="btn-akatsuki" onclick="triggerManualState('akatsuki')">
+            <span>4. Mangekyō Awakened</span>
+            <span class="gesture-shortcut">Pinch Fingers</span>
+        </button>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>

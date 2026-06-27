@@ -1,0 +1,290 @@
+:root {
+    --primary: #ff1111;
+    --primary-glow: rgba(255, 17, 17, 0.6);
+    --dark-bg: #050101;
+    --gold: #ffaa00;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: var(--dark-bg);
+    font-family: 'Courier New', Courier, monospace;
+    color: #ffffff;
+    user-select: none;
+}
+
+#ui {
+    position: absolute;
+    top: 5%;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+    z-index: 10;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin: 0;
+    letter-spacing: 12px;
+    font-weight: 900;
+    text-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
+    background: linear-gradient(to bottom, #ffffff, #ff3333, #660000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: #888;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+#technique-name {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-top: 15px;
+    font-weight: bold;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px var(--primary-glow);
+    transition: all 0.3s ease;
+}
+
+#jutsu-desc {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-top: 8px;
+    letter-spacing: 2px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    pointer-events: none;
+    line-height: 1.4;
+    height: 40px;
+}
+
+/* Responsive Dashboard Panel - Manual triggers + info */
+#control-panel {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    background: rgba(10, 2, 2, 0.85);
+    border: 1px solid rgba(255, 50, 50, 0.25);
+    border-radius: 16px;
+    padding: 15px;
+    width: 320px;
+    z-index: 30;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    transition: opacity 0.3s;
+}
+
+#control-panel h3 {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: #ff5555;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 50, 50, 0.15);
+    padding-bottom: 8px;
+}
+
+.gesture-btn {
+    background: rgba(30, 5, 5, 0.6);
+    border: 1px solid rgba(255, 25, 25, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 6px 0;
+    width: 100%;
+    color: #ccc;
+    text-align: left;
+    font-family: inherit;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gesture-btn:hover {
+    background: rgba(120, 10, 10, 0.25);
+    border-color: var(--primary);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.25);
+}
+
+.gesture-btn.active {
+    background: rgba(200, 15, 15, 0.25);
+    border-color: var(--primary);
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+
+.gesture-shortcut {
+    font-size: 0.65rem;
+    background: rgba(255, 0, 0, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #ffaaaa;
+}
+
+/* Camera Hub Overlay */
+#video-container {
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+    transform: scaleX(-1);
+    width: 400px;
+    height: 300px;
+    border: 2px solid rgba(255, 50, 50, 0.3);
+    z-index: 20;
+    background-color: #0d0303;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+    transition: border-color 0.3s;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+}
+
+#output_canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Cinematic Effects */
+#grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E");
+}
+
+#eye-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.95);
+    z-index: 4;
+    transition: box-shadow 0.5s ease;
+}
+
+.laser-flash {
+    animation: sharinganFlash 0.6s ease-out forwards;
+}
+
+@keyframes sharinganFlash {
+    0% {
+        background: rgba(255, 0, 0, 0);
+    }
+
+    15% {
+        background: rgba(255, 0, 0, 0.45);
+        filter: blur(5px);
+    }
+
+    100% {
+        background: rgba(255, 0, 0, 0);
+    }
+}
+
+/* Loading Overlay */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(255, 0, 0, 0.1);
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    letter-spacing: 5px;
+    color: #ff3333;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.loading-tip {
+    margin-top: 10px;
+    font-size: 0.7rem;
+    color: #666;
+    letter-spacing: 1px;
+    max-width: 320px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+        letter-spacing: 6px;
+    }
+
+    #control-panel {
+        width: 90%;
+        left: 5%;
+        right: auto;
+        bottom: 25%;
+    }
+
+    #video-container {
+        width: 220px;
+        height: 165px;
+        bottom: 2%;
+        left: 5%;
+        transform: scaleX(-1);
+    }
+
+    #technique-name {
+        font-size: 1.1rem;
+    }
+}
