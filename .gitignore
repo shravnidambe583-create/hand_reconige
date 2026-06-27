@@ -1,2 +1,5 @@
 # Environment specific workarounds
 powershell.cmd
+
+# Vercel folder
+.vercel
